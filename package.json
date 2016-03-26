@@ -1,0 +1,18 @@
+{
+  "name": "microservice",
+  "version": "1.0.0",
+  "description": "Learning project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "microservice",
+    "seneca"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "seneca": "^2.0.0"
+  }
+}
