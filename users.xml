@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<user>
+    <id>1</id>
+    <firstName>Leonardo</firstName>
+    <lastName>DiCaprio</lastName>
+    <email> leo@oskar.com</email>
+    <password> *** </password>
+    <role> user </role>
+    <phone> +380951397113</phone>
+    <address> pr. Lenina, 21, 111</adress>
+</user>
