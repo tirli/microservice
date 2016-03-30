@@ -1,7 +1,14 @@
 <order>
     <products>
       <product>
-
+        <id>1</id>
+        <product>Laptop</product>
+        <status>Доставлено</status>
+        <storage>
+          <id>2</id>
+          <address>ул. Мира</address>
+          <description>Розовенький</description>
+        </storage>
       </product>
     </products>
     <user>
@@ -10,6 +17,6 @@
       <lastName>DiCaprio</lastName>
       <email> leo@oskar.com</email>
       <phone> +380951397113</phone>
-      <address> pr. Lenina, 21, 111</adress>
+      <address> pr. Lenina, 21, 111</address>
     </user>
 </order>
