@@ -1,0 +1,15 @@
+<order>
+    <products>
+      <product>
+
+      </product>
+    </products>
+    <user>
+      <id>1</id>
+      <firstName>Leonardo</firstName>
+      <lastName>DiCaprio</lastName>
+      <email> leo@oskar.com</email>
+      <phone> +380951397113</phone>
+      <address> pr. Lenina, 21, 111</adress>
+    </user>
+</order>

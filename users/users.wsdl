@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<definitions
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:tns="./users.xsd"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  name="microservice.users.UserController"
+  targetNamespace="http://localhost:3000/users">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="user">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="xs:byte"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="role" type="xs:string"/>
+            <xs:element name="phone" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <portType name="microservice.users.UserControllerPort">
+    <operation name="register">
+      <input message="tns:registerIn"/>
+      <output message="tns:registerOut"/>
+    </operation>
+    <operation name="login">
+      <input message="tns:loginIn"/>
+      <output message="tns:loginOut"/>
+    </operation>
+    </operation>
+    <operation name="changeUser">
+      <input message="tns:changeUserIn"/>
+      <output message="tns:changeUserOut"/>
+    </operation>
+  </portType>
+  <binding name="microservice.users.UserControllerBinding" type="tns:microservice.users.UserControllerPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="register">
+      <soap:operation soapAction="http://localhost:3000/users/register"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
+      </output>
+    </operation>
+    <operation name="login">
+      <soap:operation soapAction="http://localhost:3000/users/login"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
+      </output>
+    </operation>
+    <operation name="changeUser">
+      <soap:operation soapAction="http://localhost:3000/users/changeUser"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="microservice.users.UserControllerService">
+    <port name="microservice.users.UserControllerPort" binding="tns:microservice.users.UserControllerBinding">
+      <soap:address location="http://localhost:3000/users"/>
+    </port>
+  </service>
+  <message name="registerIn">
+    <part name="email" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="registerOut">
+    <part name="return" type="user"/>
+  </message>
+  <message name="loginIn">
+    <part name="email" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="loginOut">
+    <part name="return" type="user"/>
+  </message>
+  </message>
+  <message name="changeUser">
+    <part name="user" type="user"/>
+  </message>
+  <message name="loginOut">
+    <part name="return" type="user"/>
+  </message>
+</definitions>
