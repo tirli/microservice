@@ -70,9 +70,6 @@
 			<output message="tns:getListOut"/>
 			<input message="tns:getUsersListIn"/>
 		</operation>
-		<operation name="deleteUser">
-			<input message="tns:deleteUserIn"/>
-		</operation>
 	</portType>
 	<binding name="microservice.users.UserControllerBinding" type="tns:microservice.users.UserControllerPort">
 		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -117,12 +114,6 @@
 			<output>
 				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
 			</output>
-			<input>
-				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
-			</input>
-		</operation>
-		<operation name="deleteUser">
-			<soap:operation soapAction="urn:#deleteUser"/>
 			<input>
 				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
 			</input>
