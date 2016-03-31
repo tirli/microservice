@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost:3000/users" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://localhost:3000/orders" name="microservice.orders.OrdersController" targetNamespace="http://localhost:3000/orders">
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost:3000/orders" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://localhost:3000/orders" name="microservice.orders.OrdersController" targetNamespace="http://localhost:3000/orders">
 	<wsdl:types>
 		<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost:3000/orders">
 			<xs:complexType name="order">
@@ -40,6 +40,20 @@
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
+					<xs:element type="xs:string" name="preferredAddress"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="simpleOrder">
+				<xs:sequence>
+					<xs:element name="products">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element type="xs:byte" name="id" maxOccurs="unbounded" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element type="xs:byte" name="userId"/>
+					<xs:element type="xs:string" name="preferredAddress"/>
 				</xs:sequence>
 			</xs:complexType>
 			<xs:complexType name="ordersList">
@@ -52,10 +66,10 @@
 		</xs:schema>
 	</wsdl:types>
 	<message name="placeOrderIn">
-		<part name="order" type="ns:order"/>
+		<part name="order" type="tns:simpleOrder"/>
 	</message>
 	<message name="changeOrderIn">
-		<part name="order" type="ns:order"/>
+		<part name="order" type="tns:simpleOrder"/>
 	</message>
 	<message name="deleteOrderIn">
 		<part name="id" type="xsd:int"/>
@@ -74,21 +88,21 @@
 	</message>
 	<portType name="microservice.orders.OrdersControllerPort">
 		<operation name="placeOrder" pattern="http://www.w3.org/ns/wsdl/in-only">
-			<input message="ns:placeOrderIn" element="tns:placeOrderIn"/>
+			<input message="tns:placeOrderIn" element="tns:placeOrderIn"/>
 		</operation>
 		<operation name="changeOrder">
-			<input message="ns:changeOrderIn"/>
+			<input message="tns:changeOrderIn"/>
 		</operation>
 		<operation name="deleteOrder">
-			<input message="ns:deleteOrderIn"/>
+			<input message="tns:deleteOrderIn"/>
 		</operation>
 		<operation name="getOrderById">
-			<input message="ns:getOrderByIdIn"/>
-			<output message="ns:getOrderByIdOut"/>
+			<input message="tns:getOrderByIdIn"/>
+			<output message="tns:getOrderByIdOut"/>
 		</operation>
 		<operation name="getOrdersByUserId">
-			<input message="ns:getOrderdByUserIdIn"/>
-			<output message="ns:getOrderdByUserIdOut"/>
+			<input message="tns:getOrderdByUserIdIn"/>
+			<output message="tns:getOrderdByUserIdOut"/>
 		</operation>
 	</portType>
 	<binding name="microservice.orders.OrdersControllerBinding" type="ns:microservice.orders.OrdersControllerPort">
