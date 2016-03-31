@@ -37,8 +37,8 @@
 	<message name="getUserByIdIn">
 		<part name="id" type="xsd:int"/>
 	</message>
-	<message name="geListIn">
-		<part name="users" type="xsd:integer"/>
+	<message name="getListOut">
+		<part name="users" type="tns:userList"/>
 	</message>
 	<message name="userOut">
 		<part name="user" type="tns:user"/>
@@ -46,7 +46,9 @@
 	<message name="deleteUserIn">
 		<part name="id" type="xsd:int"/>
 	</message>
-	<message name="NewMessage"/>
+	<message name="getUsersListIn">
+		<part name="role" type="xsd:string"/>
+	</message>
 	<portType name="microservice.users.UserControllerPort">
 		<operation name="register">
 			<input message="tns:registerIn"/>
@@ -65,8 +67,8 @@
 			<output message="tns:userOut"/>
 		</operation>
 		<operation name="getUsersListByRole">
-			<output message="tns:geListIn"/>
-			<input message="tns:geListIn"/>
+			<output message="tns:getListOut"/>
+			<input message="tns:getUsersListIn"/>
 		</operation>
 		<operation name="deleteUser">
 			<input message="tns:deleteUserIn"/>
@@ -120,7 +122,7 @@
 			</input>
 		</operation>
 		<operation name="deleteUser">
-			<soap:operation soapAction="urn:#NewOperation"/>
+			<soap:operation soapAction="urn:#deleteUser"/>
 			<input>
 				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/users"/>
 			</input>
