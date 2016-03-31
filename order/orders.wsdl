@@ -71,6 +71,9 @@
 	<message name="changeOrderIn">
 		<part name="order" type="tns:simpleOrder"/>
 	</message>
+	<message name="changeOrderOut">
+		<part name="order" type="tns:order"/>
+	</message>
 	<message name="deleteOrderIn">
 		<part name="id" type="xsd:int"/>
 	</message>
@@ -86,15 +89,17 @@
 	<message name="getOrderdByUserIdOut">
 		<part name="orders" type="ns:ordersList"/>
 	</message>
+	<message name="placeOrderOut">
+		<part name="order" type="tns:order"/>
+	</message>
 	<portType name="microservice.orders.OrdersControllerPort">
 		<operation name="placeOrder" pattern="http://www.w3.org/ns/wsdl/in-only">
 			<input message="tns:placeOrderIn" element="tns:placeOrderIn"/>
+			<output message="tns:placeOrderOut"/>
 		</operation>
 		<operation name="changeOrder">
 			<input message="tns:changeOrderIn"/>
-		</operation>
-		<operation name="deleteOrder">
-			<input message="tns:deleteOrderIn"/>
+			<output message="tns:changeOrderOut"/>
 		</operation>
 		<operation name="getOrderById">
 			<input message="tns:getOrderByIdIn"/>
@@ -112,18 +117,18 @@
 			<input>
 				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
 			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
+			</output>
 		</operation>
 		<operation name="changeOrder">
 			<soap:operation soapAction="urn:changeOrder"/>
 			<input>
 				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
 			</input>
-		</operation>
-		<operation name="deleteOrder">
-			<soap:operation soapAction="urn:deleteOrder"/>
-			<input>
+			<output>
 				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:3000/orders"/>
-			</input>
+			</output>
 		</operation>
 		<operation name="getOrderById">
 			<soap:operation soapAction="urn:getOrderById"/>
